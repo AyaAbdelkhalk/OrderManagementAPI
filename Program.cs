@@ -19,18 +19,19 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 });
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.MapOpenApi();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/openapi/v1.json", "V1");
     });
-}
+//}
 
 app.UseMiddleware<RateLimitingMiddleware>();
 
