@@ -1,7 +1,9 @@
+using ECommerceOrderManagementAPI.Helpers;
 using ECommerceOrderManagementAPI.Interfaces;
 using ECommerceOrderManagementAPI.Models;
 using ECommerceOrderManagementAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,6 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +31,8 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/openapi/v1.json", "V1");
     });
 }
+
+app.UseMiddleware<RateLimitingMiddleware>();
 
 app.UseHttpsRedirection();
 

@@ -1,10 +1,9 @@
 ﻿namespace ECommerceOrderManagementAPI.DTOs.OrderProductDTOs
 {
-    public class GetOrderProductsDTO
+    public class CreateOrderProductDTO
     {
-        public int Id { get; set; }
+        public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int RequiredQuantity { get; set; } = 1;
-        public decimal UnitPrice { get; set; }
     }
 }

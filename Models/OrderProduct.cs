@@ -9,6 +9,6 @@ namespace ECommerceOrderManagementAPI.Models
         public Order Order { get; set; }
         public int ProductID { get; set; }
         public Product Product { get; set; }
-        public int Quantity { get; set; }
+        public int RequiredQuantity { get; set; } 
     }
 }
