@@ -1,4 +1,6 @@
+using ECommerceOrderManagementAPI.Interfaces;
 using ECommerceOrderManagementAPI.Models;
+using ECommerceOrderManagementAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,10 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
